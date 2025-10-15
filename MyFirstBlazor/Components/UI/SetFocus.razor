@@ -1,0 +1,11 @@
+﻿@page "/setfocus"
+<input @bind-value="value" @ref="textInput"/>
+<button @onclick="() => textInput.FocusAsync()" class="btn btn-outline-dark">Set Focus</button>
+@code {
+    ElementReference textInput;
+    string value;
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await textInput.FocusAsync();
+    }
+}
