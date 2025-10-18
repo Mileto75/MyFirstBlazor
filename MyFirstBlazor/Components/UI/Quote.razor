@@ -1,6 +1,65 @@
 ﻿@* render the quote *@
-<div class="alert alert-info">
-    <img src="@quoteModel.Icon_Url" />
-    <span>@quoteModel.Value</span>
-</div>
+    
+    @if(categories is null)
+    { 
+        <Loading />
+    }
+    else
+    {
+        <div class="form-group">
+            <select @bind="selectedCategory" @bind:after="GetQuote" class="form-select">
+                @foreach (var category in categories)
+                {
+                    <option value="@category">@category</option>
+                }
+            </select>
+        </div> 
+    }
+    @if(isLoading)
+    { 
+        <Loading></Loading>
+    }
+    else
+    { 
+        <div class="alert alert-info">
+            <img src="@quoteModel.Icon_Url" />
+            <span>@quoteModel.Value</span>
+        </div>
+    }
+
+@code {
+    private HttpClient httpClient = new();
+    private QuoteModel quoteModel = new();
+    private IEnumerable<string> categories;
+    private string selectedCategory;
+    private bool isLoading;
+    [Parameter]
+    public string Category { get; set; }
+    protected async override Task OnInitializedAsync()
+    {
+        //get the categories
+        var result = await httpClient.GetAsync("https://api.chucknorris.io/jokes/categories");
+        if (result.IsSuccessStatusCode)
+        {
+            var content = await result.Content.ReadAsStringAsync();
+            //deserializen
+            categories = JsonSerializer.Deserialize<IEnumerable<string>>(content,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        }
+
+    }
+    private async Task GetQuote()
+    {
+        isLoading = true;
+        var result = await httpClient.GetAsync($"https://api.chucknorris.io/jokes/random/?category={selectedCategory}");
+        if (result.IsSuccessStatusCode)
+        {
+            var content = await result.Content.ReadAsStringAsync();
+            //deserializen
+            quoteModel = JsonSerializer.Deserialize<QuoteModel>(content,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        }
+        isLoading = false;
+    }
+}
 

@@ -1,0 +1,21 @@
+﻿<div class="col col-lg-3 mx-auto mt-2">
+    <div class="card m-2 h-100">
+        <!--tips: add .text-center,.text-right to the .card to change card text alignment-->
+        <img src="@MovieModel.Imgposter" class="card-img-top" alt="...">
+        <div class="card-body">
+            <a href="@MovieModel.ImdbUrl" class="card-link">
+                <h5 class="card-title">@MovieModel.Title</h5>
+            </a>
+            <h6 class="card-subtitle mb-2 text-muted">Actors</h6>
+            <p class="card-text">@MovieModel.Actors</p>
+        </div>
+        <div class="card-footer text-center">
+            <a href="#" class="btn btn-primary">Info</a>
+        </div>
+    </div>
+</div>
+
+    @code {
+        [Parameter]
+        public MovieModel MovieModel { get; set; }
+    }

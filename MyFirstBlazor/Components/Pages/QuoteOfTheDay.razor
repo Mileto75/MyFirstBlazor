@@ -1,5 +1,13 @@
 ﻿@page "/quote"
 
 @* load the Quote component *@
-<Quote></Quote>
+<ErrorBoundary>
+    <ChildContent>
+        <Quote></Quote>
+    </ChildContent>
+    <ErrorContent Context="exception">
+        @exception.Message
+    </ErrorContent>
+</ErrorBoundary>
+    
 

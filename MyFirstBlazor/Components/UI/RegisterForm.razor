@@ -1,0 +1,60 @@
+﻿<div class="row">
+    <div class="col col-lg-5 mx-auto border border-1 rounded rounded-2">
+        <h3>Please register</h3>
+        <EditForm Model="RegisterFormModel" OnValidSubmit="HandleSubmit">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <label class="form-label">Email:</label>
+                <InputText @ref="TextInput" class="form-control" @bind-Value="RegisterFormModel.Email" />
+                <ValidationMessage For="@(()=> RegisterFormModel.Email)" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Firstname:</label>
+                <InputText class="form-control" @bind-Value="RegisterFormModel.Firstname" />
+                <ValidationMessage For="@(()=> RegisterFormModel.Firstname)" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Lastname:</label>
+                <InputText class="form-control" @bind-Value="RegisterFormModel.Lastname" />
+                <ValidationMessage For="@(()=> RegisterFormModel.Lastname)" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Password:</label>
+                <InputText class="form-control" @bind-Value="RegisterFormModel.Password" />
+                <ValidationMessage For="@(()=> RegisterFormModel.Password)" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Repeat password:</label>
+                <InputText class="form-control" @bind-Value="RegisterFormModel.RepeatPassword" />
+                <ValidationMessage For="@(()=> RegisterFormModel.RepeatPassword)" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Date of birth:</label>
+                <InputDate class="form-control" @bind-Value="RegisterFormModel.DateOfBirth" />
+                <ValidationMessage For="@(()=> RegisterFormModel.DateOfBirth)" />
+            </div>
+            <button class="btn btn-outline-info mt-2 mb-2" type="submit">Register</button>
+        </EditForm>
+    </div>
+</div>
+@code {
+    [Parameter]
+    public RegisterFormModel RegisterFormModel { get; set; }
+    private InputText TextInput;
+    [Parameter]
+    public EventCallback<RegisterFormModel> OnSave { get; set; }
+    [Parameter]
+    public EventCallback<bool> FormVisibleChanged { get; set; }
+    [Parameter]
+    public bool FormVisible { get; set; }
+    private async Task HandleSubmit()
+    {
+        FormVisible = false;
+        await FormVisibleChanged.InvokeAsync();
+    }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await TextInput.Element.Value.FocusAsync();
+    }
+}

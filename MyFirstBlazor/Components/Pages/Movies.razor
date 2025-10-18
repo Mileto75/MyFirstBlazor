@@ -1,0 +1,41 @@
+﻿@page "/Movies"
+@inject HttpClient httpClient
+<div class="col col-lg-5 mx-auto">
+    <label class="form-label">Search a movie:</label>
+    <input type="text" class="form-control"
+           @bind="Search" @bind:event="oninput" @bind:after="SearchAsync" />
+</div>
+@if(isLoading)
+{ 
+    <Loading></Loading>
+}
+else if(isLoaded)
+{
+    <MovieListComponent MoviesModel="moviesModel"></MovieListComponent>
+}
+@code {      
+    private bool isLoading;
+    private bool isLoaded;
+    public string Search { get; set; }
+    private MoviesModel moviesModel;
+    protected override async Task OnInitializedAsync()
+    {
+
+    }
+    private async Task SearchAsync()
+    {
+        isLoading = true;
+        isLoaded = false;
+        if(string.IsNullOrEmpty(Search))
+        {
+            isLoaded = false;
+            isLoading = false;
+            return;
+        }
+        var result = await httpClient.GetAsync($"https://imdb.iamidiotareyoutoo.com/search?q={Search}");
+        var content = await result.Content.ReadAsStringAsync();
+        moviesModel = JsonSerializer.Deserialize<MoviesModel>(content);
+        isLoading = false;
+        isLoaded = true;
+    }
+}

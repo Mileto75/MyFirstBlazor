@@ -1,0 +1,28 @@
+﻿@page "/register"
+<ErrorBoundary>
+    <ChildContent>
+        @if(FormVisible)
+        { 
+            <RegisterForm RegisterFormModel="RegisterFormModel" @bind-FormVisible="FormVisible" ></RegisterForm>
+        }
+        else
+        { 
+            <button @onclick="ShowForm" class="btn btn-outline-info">Show Register</button>    
+        }
+    </ChildContent>
+    <ErrorContent Context="exception">
+        <div class="alert alert-danger" role="alert">
+            @exception.Message
+        </div>
+    </ErrorContent>
+</ErrorBoundary>
+@code {
+    public RegisterFormModel RegisterFormModel { get; set; }
+    public bool FormVisible { get; set; }
+    private void ShowForm()
+    {
+        RegisterFormModel = new();
+        RegisterFormModel.DateOfBirth = DateTime.Now;
+        FormVisible = true;
+    }
+}
