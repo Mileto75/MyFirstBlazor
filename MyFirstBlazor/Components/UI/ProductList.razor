@@ -1,0 +1,13 @@
+﻿
+<div class="row">
+    @foreach (var product in Products.Products)
+    {
+        <ProductCard ProductModel="@product"></ProductCard>
+    }
+</div>
+
+
+@code {
+    [Parameter]
+    public ProductsModel Products { get; set; }
+}

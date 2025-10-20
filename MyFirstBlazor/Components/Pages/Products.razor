@@ -1,0 +1,23 @@
+﻿@page "/products"
+@inject HttpClient httpClient
+@if(productsModel.Products is null)
+{
+    <p>loading...</p>
+}
+else
+{
+<ErrorBoundary>
+    <ProductList Products="productsModel"></ProductList>
+</ErrorBoundary>
+}
+@code {
+    private ProductsModel productsModel = new();
+
+    protected async override Task OnInitializedAsync()
+    {
+        var result = await httpClient.GetAsync("https://api.escuelajs.co/api/v1/products");
+        var content = await result.Content.ReadAsStringAsync();
+        productsModel.Products = JsonSerializer.Deserialize<IEnumerable<ProductModel>>(content,
+        new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+    }
+}

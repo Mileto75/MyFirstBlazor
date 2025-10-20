@@ -1,35 +1,42 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">MyFirstBlazor</a>
+﻿<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!--tips: to change the nav placement use .fixed-top,.fixed-bottom,.sticky-top -->
+    <a class="navbar-brand" href="#">My Brand</a>
+    <!-- <a class="navbar-brand" href="#">
+      <img src="..." class="d-inline-block align-top" width="30" height="30" alt="...">
+      My Brand</a> -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mr-auto">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                </NavLink>
+            </div>
+
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="counter">
+                    <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+                </NavLink>
+            </div>
+
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="weather">
+                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="weather">
+                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="products">
+                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Products
+                </NavLink>
+            </div>
+        </ul>
     </div>
-</div>
-
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
-
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="quote">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Quote of the day
-            </NavLink>
-        </div>
-    </nav>
-</div>
-
+</nav>
