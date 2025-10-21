@@ -6,7 +6,7 @@ namespace MyFirstBlazor.Components.UI
     public partial class Quote
     {
         private HttpClient httpClient = new();
-        private QuoteModel quoteModel = new();
+        private QuoteModel quoteModel;
         protected async override Task OnInitializedAsync()
         {
             //get the quote
@@ -17,6 +17,7 @@ namespace MyFirstBlazor.Components.UI
                 //deserializen
                 quoteModel = JsonSerializer.Deserialize<QuoteModel>(content,
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                await Task.Delay(700);
             }
         }
     }
