@@ -3,6 +3,24 @@
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
-<Quote></Quote>
+<ErrorBoundary>
+    <ChildContent>
+        <Quote></Quote>
+    </ChildContent>
+    <ErrorContent>
+        <Alert Style="danger">
+            Quotegenerator niet beschikbaar, probeer later opnieuw!
+        </Alert>
+    </ErrorContent>
+</ErrorBoundary>
 Welcome to your new app.
+<Alert Style="danger">
+    This is danger message
+</Alert>
+<Alert Style="info">
+    This is info message
+</Alert>
+<Alert Style="warning">
+    This is warning message
+</Alert>
 

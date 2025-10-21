@@ -15,14 +15,19 @@ namespace MyFirstBlazor.Components.UI
         {
             //get the quote
             var result = await httpClient.GetAsync("https://api.chucknorris.io/jokes/random");
-            if (result.IsSuccessStatusCode)
-            {
-                var content = await result.Content.ReadAsStringAsync();
-                //deserializen
-                quoteModel = JsonSerializer.Deserialize<QuoteModel>(content,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                await Task.Delay(700);
-            }
+            var content = await result.Content.ReadAsStringAsync();
+            //deserializen
+            quoteModel = JsonSerializer.Deserialize<QuoteModel>(content,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            await Task.Delay(700);
+            //if (result.IsSuccessStatusCode)
+            //{
+            //    var content = await result.Content.ReadAsStringAsync();
+            //    //deserializen
+            //    quoteModel = JsonSerializer.Deserialize<QuoteModel>(content,
+            //        new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            //    await Task.Delay(700);
+            //}
         }
     }
 }
