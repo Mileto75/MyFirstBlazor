@@ -1,0 +1,30 @@
+﻿@page "/lifecycledemo"
+<h3>Lifecycle Demo</h3>
+
+@code {
+    public LifecycleDemo()
+    {
+        Console.WriteLine("Constructor");
+    }
+    protected async override Task OnInitializedAsync()
+    {
+        Console.WriteLine("Init");
+    }
+    protected async override Task OnParametersSetAsync()
+    {
+        Console.WriteLine("Parameter set");
+    }
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(firstRender)
+        {
+            Console.WriteLine("First render");
+            StateHasChanged();
+        }
+        else
+        {
+            Console.WriteLine("render");
+        }
+
+    }
+}

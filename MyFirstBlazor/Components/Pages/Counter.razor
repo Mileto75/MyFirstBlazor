@@ -1,18 +1,12 @@
 ﻿@page "/counter"
 
 <PageTitle>Counter</PageTitle>
-
-<h1>Counter</h1>
-
 <p role="status">Current count: @currentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<CounterComponent Increment="increment" @bind-CurrentCount="currentCount"></CounterComponent>
+
 
 @code {
+    private int increment = 5;
     private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
 }

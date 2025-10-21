@@ -1,0 +1,30 @@
+﻿@page "/statechangedemo"
+<h3>StateChange Demo</h3>
+@* show the messages *@
+@foreach(var message in Messages)
+{ 
+    <p>@message</p>
+}
+@code {       
+    public List<string> Messages { get; set; } = new();
+    protected override async Task OnInitializedAsync()
+    {
+        //simulates await async action
+        Messages.Add("This ");
+        await Task.Delay(500);
+        StateHasChanged();
+        Messages.Add("is ");
+        await Task.Delay(500);
+        StateHasChanged();
+        Messages.Add("a ");
+        await Task.Delay(500);
+        StateHasChanged();
+        Messages.Add("async ");
+        await Task.Delay(500);
+        StateHasChanged();
+        Messages.Add("blazor ");
+        await Task.Delay(500);
+        Messages.Add("message ");
+        await Task.Delay(500);
+    }
+}

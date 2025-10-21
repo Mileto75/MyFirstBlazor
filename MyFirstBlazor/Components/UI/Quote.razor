@@ -2,11 +2,7 @@
 @* show loading,client side *@
 @if(quoteModel is null)
 { 
-    <div class="col col-lg-2 mx-auto">
-        <div class="spinner-border text-primary" role="status">
-            <span class="sr-only"></span>
-        </div>
-    </div>
+    <LoadingComponent />
 }
 else
 {

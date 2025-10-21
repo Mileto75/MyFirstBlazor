@@ -5,8 +5,12 @@ namespace MyFirstBlazor.Components.UI
 {
     public partial class Quote
     {
-        private HttpClient httpClient = new();
+        private HttpClient httpClient;
         private QuoteModel quoteModel;
+        public Quote()
+        {
+            httpClient = new();    
+        }
         protected async override Task OnInitializedAsync()
         {
             //get the quote
