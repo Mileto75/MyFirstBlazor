@@ -4,6 +4,6 @@ namespace MyFirstBlazor.Services.Interfaces
 {
     public interface IApiService
     {
-        Task<IEnumerable<MovieModel>> GetAllAsync();
+        Task<ResultModel<IEnumerable<MovieModel>>> GetAllAsync();
     }
 }

@@ -1,0 +1,10 @@
+﻿@page "/movies"
+@inject MyFirstBlazor.Services.Interfaces.IApiService ApiService
+<h3>Movies</h3>
+
+@code {      
+    protected async override Task OnInitializedAsync()
+    {
+        var result = await ApiService.GetAllAsync();
+    }
+}

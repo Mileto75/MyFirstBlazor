@@ -1,8 +1,12 @@
 using MyFirstBlazor.Components;
+using MyFirstBlazor.Services;
+using MyFirstBlazor.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<IApiService, ApiService>();
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
